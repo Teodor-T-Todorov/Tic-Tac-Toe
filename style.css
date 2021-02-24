@@ -4,6 +4,29 @@ h1{
     color: #4e4d4d;
 }
 
+.currentTurn{
+    display: flex;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%,-15%);
+}
+
+.xTurn, .oTurn{
+    font-size: 50px;
+    text-align: center;
+    font-family:Arial, Helvetica, sans-serif;
+    color: #4e4d4d;
+}
+
+.xTurn{
+    margin-right: 10px;
+}
+
+.oTurn{
+    margin-left: 10px;
+}
+
 .board{
     position: fixed;
     top: 50%;
