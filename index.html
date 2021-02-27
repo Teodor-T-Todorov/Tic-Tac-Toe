@@ -12,8 +12,8 @@
     <H1>Tic-Tac-Toe</H1>
 
     <div class="currentTurn">
-        <div class="xTurn">X</div>
-        <div class="oTurn">O</div>
+        <div class="xTurn" id="xTurn">X</div>
+        <div class="oTurn" id="oTurn">O</div>
     </div>
 
     <div class="board" id = "board">
@@ -28,9 +28,11 @@
         <div class="cell" id="8"></div>
     </div>
 
-    <div class="announce-winner">
-        <h1>Congrats you won</h1>
-        <button>Play Again</button>
+    <div class="announcer" id="announcer">
+        <div class="overlay" id="overlay"></div>
+        <div class="content" id="content">
+            <h1>Congrats you won</h1>
+        </div>
     </div>
 </body>
 </html>

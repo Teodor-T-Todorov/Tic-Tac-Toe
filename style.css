@@ -5,7 +5,7 @@ h1{
 }
 
 .currentTurn{
-    display: flex;
+    width: 180px;
     position: fixed;
     top: 15%;
     left: 50%;
@@ -20,11 +20,15 @@ h1{
 }
 
 .xTurn{
-    margin-right: 10px;
+    float: left;
+    width: 55px;
+    background-color: #4e4d4d ;
+    color: white;
 }
 
 .oTurn{
-    margin-left: 10px;
+    float: right;
+    width: 55px;
 }
 
 .board{
@@ -53,6 +57,29 @@ h1{
     color: black;
 }
 
-.announce-winner{
+.announcer{
     display: none;
+}
+
+.announcer .overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;   
+    height: 100vh;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1;
+}
+
+.announcer .content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    z-index: 2;
+    text-align: center;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 6px;
 }
