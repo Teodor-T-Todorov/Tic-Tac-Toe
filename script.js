@@ -4,7 +4,7 @@ const cells = document.querySelectorAll('.cell');
 const xTurn = document.querySelector('#xTurn');
 const oTurn = document.querySelector('#oTurn');
 const announcer = document.querySelector('#announcer');
-const content = document.querySelector('#content');
+const announceContent = document.querySelector('#content');
 const btnReplay = document.querySelector('#btn-replay');
 const btnPlayer = document.querySelector('#btn-player');
 const btnAI = document.querySelector('#btn-ai');
@@ -84,21 +84,22 @@ const game = ( () =>
 
     const aiMakeMove = () =>
     {
-        if(turn != 1)
+        if(turn != 1 && board.includes(''))
         {
             let index = bestMove();
-            board[index] = playerO.sign;
-            cells[index].textContent = playerO.sign;
-    
+            board[index] = 'O';
+            cells[index].textContent = 'O';
+
             turn++;
     
             if(turn >= 5 && winCondition(activePlayer)) //First potential win condition comes at 5th turn
             {
-                game.announceWinner()
+                announcer.style.display = 'block';
+                announceContent.getElementsByTagName('h1')[0].innerHTML = 'AI won!' ;
             }
             else if(turn == 10) //Then we have a draw
             {
-                game.announceDraw();
+                announceDraw();
             } 
         } 
     }
@@ -220,19 +221,13 @@ const game = ( () =>
     const announceWinner = () =>
     {
         announcer.style.display = 'block';
-        content.getElementsByTagName('h1')[0].innerHTML = `${game.getActivePlayer().sign} won!`;
-        game.restartGame();
-        xTurn.style = null;
-        oTurn.style = null;
+        announceContent.getElementsByTagName('h1')[0].innerHTML = `${game.getActivePlayer().sign} won!`;
     };
 
     const announceDraw = () =>
     {
         announcer.style.display = 'block';
-        content.getElementsByTagName('h1')[0].innerHTML = 'Draw!';
-        game.restartGame();
-        xTurn.style = null;
-        oTurn.style = null;
+        announceContent.getElementsByTagName('h1')[0].innerHTML = 'Draw!';
     };
 
     return{
@@ -274,15 +269,24 @@ board.addEventListener('click', function(e){
 btnPlayer.addEventListener('click', () =>
 {
     game.setGameMode(gameModes.vsPlayer);
+    btnPlayer.style.color = 'white';
+    btnPlayer.style.backgroundColor = 'black'
+    btnAI.style.color = 'black';
+    btnAI.style.backgroundColor = 'white';
 })
 
 // Set gamemode vs AI
 btnAI.addEventListener('click', () =>
 {
     game.setGameMode(gameModes.vsAI);
+    btnAI.style.color = 'white';
+    btnAI.style.backgroundColor = 'black'
+    btnPlayer.style.color = 'black'
+    btnPlayer.style.backgroundColor = 'white';
 })
 
 btnReplay.addEventListener('click', () => 
 {
-    announcer.style.display = 'none';  
+    announcer.style.display = 'none';
+    game.restartGame();
 })
